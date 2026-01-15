@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+/* =========================
+   Tailwind v4 Theme Configuration
+   ========================= */
+@theme {
+  /* Brand Colors */
+  --color-brand-primary: #1F3A5F;   /* deep corporate navy */
+  --color-brand-secondary: #4F7AA3; /* muted steel blue */
+  --color-brand-surface: #F3F5F7;   /* light grey background */
+  --color-brand-border: #D6DBE1;    /* subtle dividers */
+  --color-brand-text: #2E3440;      /* main text */
+  --color-brand-muted: #4B5563;     /* secondary text */
+  
+  /* Shadow */
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   Root colors (LOCKED LIGHT THEME)
+   ========================= */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* =========================
+   Base reset
+   ========================= */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================
+   Global body styles
+   ========================= */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+/* Scroll reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
