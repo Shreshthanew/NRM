@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "prisma generate && tsc",
-    "start": "node dist/server.js",
+    "start": "prisma migrate deploy && node dist/server.js",
     "migrate:deploy": "prisma migrate deploy",
     "dev": "nodemon --exec ts-node src/server.ts"
   },
@@ -20,7 +20,8 @@
     "cors": "^2.8.6",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3"
+    "jsonwebtoken": "^9.0.3",
+    "prisma": "^6.19.1"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.10",
@@ -29,7 +30,6 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20.19.28",
     "nodemon": "^3.1.11",
-    "prisma": "^6.19.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }
