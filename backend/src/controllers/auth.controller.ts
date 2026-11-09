@@ -1,7 +1,7 @@
 
 import { Request, Response } from "express";
 import { signupUser } from "../services/auth.service";
-import { loginUser } from "../services/auth.service";
+import { loginUser, getUserById } from "../services/auth.service";
 import { signToken } from "../utils/jwt";
 
 export async function login(req: Request, res: Response) {
@@ -68,8 +68,11 @@ export async function signup(req: Request, res: Response) {
 }
 
 export async function me(req: Request, res: Response) {
-  return res.json({
-    id: req.user!.id,
-    email: req.user!.email,
-  });
+  const user = await getUserById(req.user!.id);
+
+  if (!user) {
+    return res.status(401).json({ message: "User not found" });
+  }
+
+  return res.json(user);
 }
