@@ -1,12 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-const navItems = [
-  { label: "Services", href: "/services" },
-  { label: "Industries", href: "/industries" },
-  { label: "Resources", href: "/resources" },
-  { label: "About Us", href: "/about" },
-  { label: "Contact", href: "/contact" },
-];
 
 export default function Header() {
   return (
@@ -30,15 +23,51 @@ export default function Header() {
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
-            {navItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="text-white/80 hover:text-white transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
+            <Link href="/" className="text-white/80 hover:text-white transition-colors">
+              Home
+            </Link>
+
+            <Link href="/services" className="text-white/80 hover:text-white transition-colors">
+              Services
+            </Link>
+
+            <Link href="/industries" className="text-white/80 hover:text-white transition-colors">
+              Industries
+            </Link>
+
+            <Link
+              href="/resources"
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              Resources
+            </Link>
+
+            <div className="relative group">
+              <button className="flex items-center gap-1 text-white/80 hover:text-white transition-colors">
+                About Us
+                <span className="text-xs">▾</span>
+              </button>
+
+              <div className="absolute left-0 top-full mt-3 w-56 rounded-xl bg-white shadow-lg border border-brand-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <Link
+                  href="/about/mission-vision"
+                  className="block px-5 py-3 text-sm text-brand-text hover:bg-brand-surface"
+                >
+                  Mission & Vision
+                </Link>
+
+                <Link
+                  href="/about/company-works"
+                  className="block px-5 py-3 text-sm text-brand-text hover:bg-brand-surface"
+                >
+                  Our Company Works
+                </Link>
+              </div>
+            </div>
+
+            <Link href="/contact" className="text-white/80 hover:text-white transition-colors">
+              Contact
+            </Link>
           </nav>
 
           {/* Actions */}
