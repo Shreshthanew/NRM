@@ -17,9 +17,58 @@ model ContactLead {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  name      String
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
+  id                String             @id @default(uuid())
+  name              String
+  email             String             @unique
+  password          String
+  createdAt          DateTime            @default(now())
+  quotationRequests  QuotationRequest[]
+  inspectionRequests InspectionRequest[]
+}
+
+model QuotationRequest {
+  id                  String   @id @default(uuid())
+  userId              String
+  user                User     @relation(fields: [userId], references: [id])
+  name                String
+  email               String
+  phone               String
+  styles              Int // number of references / styles
+  poNumber            String?
+  poQuantity          Int
+  inspectionLevel     String // "I" | "II" | "III"
+  pomCount            Int // points of measurement
+  aqlCritical         String
+  aqlMajor            String
+  aqlMinor            String
+  specialRequirements String?
+  manDays             Float?
+  inspectionsPerMonth String // "1" | "2" | "FREQUENT"
+  status              String   @default("NEW")
+  createdAt           DateTime @default(now())
+
+  @@index([userId, createdAt])
+}
+
+model InspectionRequest {
+  id                  String   @id @default(uuid())
+  userId              String
+  user                User     @relation(fields: [userId], references: [id])
+  name                String
+  email               String
+  phone               String
+  styles              Int // number of references / styles
+  poNumber            String
+  poQuantity          Int
+  inspectionLevel     String // "I" | "II" | "III"
+  pomCount            Int // points of measurement
+  aqlCritical         String
+  aqlMajor            String
+  aqlMinor            String
+  specialRequirements String
+  inspectionDate      DateTime @db.Date // requested date; can vary with availability
+  status              String   @default("NEW")
+  createdAt           DateTime @default(now())
+
+  @@index([userId, createdAt])
 }

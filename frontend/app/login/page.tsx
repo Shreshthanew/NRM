@@ -72,13 +72,31 @@
 // }
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import Link from "next/link";
 import { login } from "@/lib/auth";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import { safeNext } from "@/lib/safe-next";
+
+// Shown when a logged-out visitor is sent here from one of these pages.
+const LOGIN_NOTES: Record<string, string> = {
+  "/quotation": "request a quotation",
+  "/request-inspection": "request an inspection",
+};
 
 export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginForm />
+    </Suspense>
+  );
+}
+
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const next = safeNext(searchParams.get("next"));
   const { refreshUser } = useAuth();   // ← IMPORTANT
 
   const [email, setEmail] = useState("");
@@ -92,11 +110,13 @@ export default function LoginPage() {
     try {
       await login({ email, password });
       await refreshUser();             // ← MUST exist
-      router.replace("/");
+      router.replace(next);
     } catch (err: any) {
       setError(err.message);
     }
   }
+
+  const signupHref = next === "/" ? "/signup" : `/signup?next=${encodeURIComponent(next)}`;
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-brand-surface">
@@ -107,6 +127,12 @@ export default function LoginPage() {
         <h1 className="text-2xl font-bold text-brand-primary mb-6">
           Login
         </h1>
+
+        {LOGIN_NOTES[next] && (
+          <p className="mb-6 text-brand-muted">
+            Please log in or create an account to {LOGIN_NOTES[next]}.
+          </p>
+        )}
 
         {error && <p className="text-red-600 mb-4">{error}</p>}
 
@@ -129,6 +155,13 @@ export default function LoginPage() {
         <button className="w-full py-3 bg-brand-primary text-white rounded-md">
           Login
         </button>
+
+        <p className="mt-6 text-center text-sm text-brand-muted">
+          Don&apos;t have an account?{" "}
+          <Link href={signupHref} className="text-brand-primary font-semibold hover:underline">
+            Sign up
+          </Link>
+        </p>
       </form>
     </div>
   );

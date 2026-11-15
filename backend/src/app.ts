@@ -7,6 +7,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/auth.routes";
+import quotationRoutes from "./routes/quotation.routes";
+import inspectionRoutes from "./routes/inspection.routes";
 import { requireAuth } from "./middlewares/requireAuth";
 
 const app = express();
@@ -36,5 +38,7 @@ app.get("/api/protected", requireAuth, (req, res) => {
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/quotations", quotationRoutes);
+app.use("/api/inspection-requests", inspectionRoutes);
 
 export default app;

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Hero() {
   return (
     <section className="relative bg-brand-surface">
@@ -23,13 +25,19 @@ export default function Hero() {
 
           {/* Actions */}
           <div className="mt-10 flex flex-wrap gap-4">
-            <button className="px-6 py-3 rounded-md bg-brand-primary text-white font-semibold hover:bg-brand-secondary transition">
+            <Link
+              href="/request-inspection"
+              className="px-6 py-3 rounded-md bg-brand-primary text-white font-semibold hover:bg-brand-secondary transition"
+            >
               Request Inspection
-            </button>
+            </Link>
 
-            <button className="px-6 py-3 rounded-md bg-white border border-brand-border text-brand-primary font-semibold hover:bg-slate-100 transition">
+            <Link
+              href="/quotation"
+              className="px-6 py-3 rounded-md bg-white border border-brand-border text-brand-primary font-semibold hover:bg-slate-100 transition"
+            >
               Get Quotation
-            </button>
+            </Link>
           </div>
         </div>
       </div>

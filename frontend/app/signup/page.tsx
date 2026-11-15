@@ -1,23 +1,34 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { signup } from "@/lib/auth";
 import Link from "next/link";
+import { safeNext } from "@/lib/safe-next";
 
 export default function SignupPage() {
+  return (
+    <Suspense>
+      <SignupForm />
+    </Suspense>
+  );
+}
+
+function SignupForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+  const next = safeNext(useSearchParams().get("next"));
+  const loginHref = next === "/" ? "/login" : `/login?next=${encodeURIComponent(next)}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     try {
       await signup({ name, email, password });
-      router.push("/login");
+      router.push(loginHref);
     } catch (err: any) {
       setError(err?.message || "Signup failed. Please try again.");
     }
@@ -75,7 +86,7 @@ export default function SignupPage() {
 
         <div className="mt-8 text-sm text-brand-muted text-center">
           Already have an account?{" "}
-          <Link href="/login" className="text-brand-primary font-semibold hover:underline">
+          <Link href={loginHref} className="text-brand-primary font-semibold hover:underline">
             Log in
           </Link>
         </div>
