@@ -1,81 +1,71 @@
-"use client";
+import Link from "next/link";
 
-import { useReveal } from "@/hooks/useReveal";
+export const metadata = {
+  title: "Mission & Vision",
+};
+
+// Uses the same type scale as the About Us page (see app/about/page.tsx).
 
 export default function MissionVisionPage() {
-  const revealRef = useReveal();
-
   return (
-    <section className="bg-white">
-      <div
-        ref={revealRef}
-        className="reveal max-w-7xl mx-auto px-6 py-28 grid md:grid-cols-2 gap-20 items-start"
-      >
-        {/* LEFT CONTENT */}
-        <div>
-          <h1 className="text-4xl font-extrabold text-brand-primary">
-            Our Mission, Vision & Values
+    <>
+      <section className="bg-white">
+        <div className="max-w-7xl mx-auto px-6 pt-20 pb-20 md:pt-24">
+          <p className="text-lg text-brand-muted">
+            <Link href="/about" className="hover:text-brand-primary hover:underline">
+              About Us
+            </Link>
+            <span className="mx-2">/</span>
+            <span className="text-brand-text">Mission &amp; Vision</span>
+          </p>
+
+          <h1 className="mt-4 text-5xl md:text-6xl font-bold text-brand-primary">
+            Mission &amp; Vision
           </h1>
-          <div className="w-20 h-1 bg-brand-secondary mt-4 rounded-full" />
 
-          {/* Mission */}
-          <div className="mt-12">
-            <h2 className="text-xl font-semibold text-brand-text">
-              Our Mission
-            </h2>
-            <p className="mt-4 text-brand-muted leading-relaxed">
-              To exceed our customers’ expectations by delivering innovative,
-              reliable, and bespoke Inspection, Testing, Audit, and Certification
-              services—strengthening supply chains across global markets.
-            </p>
-          </div>
+          <div className="mt-14 grid gap-12 md:grid-cols-2 lg:gap-16">
+            <div className="border-t-2 border-brand-primary pt-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-brand-primary">
+                Our Mission
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-brand-muted">
+                To deliver independent, accurate, and reliable quality inspection
+                and factory audit services that empower businesses to make
+                informed decisions, reduce supply chain risks, and maintain the
+                highest standards of product quality and compliance.
+              </p>
+            </div>
 
-          {/* Vision */}
-          <div className="mt-10">
-            <h2 className="text-xl font-semibold text-brand-text">
-              Our Vision
-            </h2>
-            <p className="mt-4 text-brand-muted leading-relaxed">
-              To become the most trusted global quality assurance partner by
-              setting new benchmarks in transparency, accuracy, and service
-              excellence.
-            </p>
-          </div>
-
-          {/* Values */}
-          <div className="mt-10">
-            <h2 className="text-xl font-semibold text-brand-text">
-              Our Values
-            </h2>
-            <p className="mt-4 text-brand-muted leading-relaxed">
-              Integrity, accountability, collaboration, and continuous
-              improvement define our culture and guide every engagement.
-            </p>
+            <div className="border-t-2 border-brand-primary pt-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-brand-primary">
+                Our Vision
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-brand-muted">
+                To become a globally recognized leader in quality assurance,
+                setting the standard for trust, transparency, and excellence
+                across international supply chains.
+              </p>
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* RIGHT TRUST PANEL */}
-        <div className="relative group bg-gradient-to-b from-white to-brand-surface border border-brand-border rounded-2xl p-10 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-          <ul className="space-y-6 text-brand-text font-medium">
-            <li className="flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-brand-secondary" />
-              Customer-first approach
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-brand-secondary" />
-              Globally aligned compliance standards
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-brand-secondary" />
-              Ethical & transparent operations
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-brand-secondary" />
-              Continuous quality improvement
-            </li>
-          </ul>
+      <section className="bg-brand-surface border-t border-brand-border">
+        <div className="max-w-4xl mx-auto px-6 py-20">
+          <p className="text-2xl md:text-3xl font-semibold leading-snug text-brand-primary">
+            We believe that quality is not merely an inspection outcome, but a
+            commitment to excellence that protects brands, strengthens
+            partnerships, and builds lasting customer confidence.
+          </p>
+
+          <Link
+            href="/about"
+            className="mt-10 inline-block text-lg font-semibold text-brand-primary hover:underline"
+          >
+            ← Back to About Us
+          </Link>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

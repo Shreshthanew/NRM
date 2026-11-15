@@ -62,17 +62,17 @@ export default function Header() {
 
               <div className="absolute left-0 top-full mt-3 w-56 rounded-xl bg-white shadow-lg border border-brand-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                 <Link
+                  href="/about"
+                  className="block px-5 py-3 text-sm text-brand-text hover:bg-brand-surface"
+                >
+                  Who We Are
+                </Link>
+
+                <Link
                   href="/about/mission-vision"
                   className="block px-5 py-3 text-sm text-brand-text hover:bg-brand-surface"
                 >
                   Mission & Vision
-                </Link>
-
-                <Link
-                  href="/about/company-works"
-                  className="block px-5 py-3 text-sm text-brand-text hover:bg-brand-surface"
-                >
-                  Our Company Works
                 </Link>
               </div>
             </div>

@@ -27,18 +27,10 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/services/factory-audit"
+                  href="/services/assurance"
                   className="hover:text-white transition-colors"
                 >
-                  Factory Audit
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/merchandising"
-                  className="hover:text-white transition-colors"
-                >
-                  Merchandising
+                  Assurance
                 </Link>
               </li>
             </ul>

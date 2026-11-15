@@ -8,16 +8,10 @@ const services = [
       "On-site inspections to verify product quality, quantity, packaging, and compliance.",
   },
   {
-    title: "Factory Audit",
-    slug: "factory-audit",
+    title: "Assurance",
+    slug: "assurance",
     description:
-      "Comprehensive factory evaluations covering capability, systems, and compliance.",
-  },
-  {
-    title: "Merchandising",
-    slug: "merchandising",
-    description:
-      "Production coordination, order tracking, and shipment follow-ups.",
+      "Factory audits, supplier assessments, and quality system audits that reduce risk across your supply chain.",
   },
 ];
 
@@ -38,7 +32,7 @@ export default function ServicesPage() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-2 gap-10">
           {services.map((service) => (
             <Link
               key={service.slug}

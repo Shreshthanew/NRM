@@ -12,17 +12,10 @@ const services = [
     },
     {
       id: "02",
-      title: "Factory Audit",
+      title: "Assurance",
       description:
-        "Comprehensive factory evaluations covering capability, quality systems, compliance, and ethical practices to help you choose reliable suppliers.",
-      slug: "factory-audit",
-    },
-    {
-      id: "03",
-      title: "Merchandizing",
-      description:
-        "End-to-end production coordination including order tracking, sampling, timelines, and shipment follow-ups for smooth and on-time delivery.",
-      slug: "merchandising",
+        "Risk-based audits and assessments of your suppliers' factories, quality systems, and working practices, so problems are prevented rather than found at shipment.",
+      slug: "assurance",
     },
   ];
   
@@ -44,7 +37,7 @@ const services = [
           </div>
 
           {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {services.map((service) => (
               <div
                 key={service.id}
